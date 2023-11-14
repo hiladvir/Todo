@@ -1,20 +1,23 @@
 package com.example.mytest;
 
+import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import java.util.ArrayList;
 
 public class New extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
+        Button button = (Button) findViewById(R.id.btnadd);
+        button.setOnClickListener(view -> openDialog());
 
         ArrayList<Task>tasks=new ArrayList<>();
         for (int i=0; i<10; i++){
@@ -34,5 +37,10 @@ public class New extends AppCompatActivity {
 
         TaskAdapter taskAdapter= new TaskAdapter(tasks);
         recyclerView.setAdapter(taskAdapter);
+    }
+    public void openDialog(){
+        dialog dialog= new dialog();
+        dialog.show(getSupportFragmentManager(),"dialog");
+
     }
 }
