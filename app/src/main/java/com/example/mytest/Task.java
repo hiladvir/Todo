@@ -3,13 +3,15 @@ package com.example.mytest;
 public class Task {
     private String taskName;
     private String taskDescription;
+    private String taskDate;
     private boolean isCompleted;
 
 
-    public Task(String taskName, String taskDescription, String isCompleted) {
+    public Task(String taskName, String taskDescription,String taskDate, Boolean isCompleted) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.isCompleted = Boolean.parseBoolean(isCompleted);
+        this.taskDate = taskDate;
+        this.isCompleted  = isCompleted;
     }
 
     public String getTaskName() {
@@ -23,6 +25,8 @@ public class Task {
     public boolean isCompleted() {
         return isCompleted;
     }
+
+    public String getDate() {return taskDate;}
 
     private class string {
     }

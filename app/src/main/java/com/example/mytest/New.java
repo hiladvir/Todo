@@ -1,6 +1,8 @@
 package com.example.mytest;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class New extends AppCompatActivity {
-
+public class New extends AppCompatActivity implements MyDialogListener {
+    public TaskAdapter taskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,22 +22,11 @@ public class New extends AppCompatActivity {
         button.setOnClickListener(view -> openDialog());
 
         ArrayList<Task>tasks=new ArrayList<>();
-        for (int i=0; i<10; i++){
-            tasks.add(new Task("לעשות קניות בסופר",
-                    "לקנות חלב, שוקולד וסוכר ",
-                    "true"));
-
-
-
-
-
-
-        }
         RecyclerView recyclerView= findViewById(R.id.recyclerviewlist);
         RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        TaskAdapter taskAdapter= new TaskAdapter(tasks);
+        taskAdapter = new TaskAdapter(tasks);
         recyclerView.setAdapter(taskAdapter);
     }
     public void openDialog(){
@@ -43,4 +34,23 @@ public class New extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(),"dialog");
 
     }
-}
+
+    @Override
+    public void onDialogPositiveClick(Task data) {
+        taskAdapter.tasks.add(data);
+        taskAdapter.notifyDataSetChanged();
+    }
+    public void activeButton(View view) {
+        Intent myIntent = new Intent(New.this, Active.class);
+        startActivity(myIntent);
+    }
+    public void btnback2(View view) {
+        Intent myIntent = new Intent(New.this, Enter.class);
+        startActivity(myIntent);
+    }
+    @Override
+   public void onDialogNegativeClick() {
+
+
+        }
+    }

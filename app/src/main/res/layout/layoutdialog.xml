@@ -34,15 +34,4 @@
         app:layout_constraintVertical_bias="0.095"
         android:autofillHints="" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="176dp"
-        android:layout_height="50dp"
-        android:text="סטטוס"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etdate"
-        app:layout_constraintVertical_bias="0.221" />
 </androidx.constraintlayout.widget.ConstraintLayout>

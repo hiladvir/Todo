@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private ArrayList<Task> tasks;
+    public ArrayList<Task> tasks;
     public TaskAdapter(ArrayList<Task>tasks){
         this.tasks= tasks;
     }
@@ -29,8 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task currentTask= tasks.get(position);
         holder.nameTextview.setText(currentTask.getTaskName());
         holder.desTextview.setText(currentTask.getTaskDescription());
-
-
+        holder.dateTextview.setText(currentTask.getDate());
     }
 
     @Override
@@ -42,6 +41,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         public TextView nameTextview;
         public TextView desTextview;
+        public  TextView dateTextview;
         public boolean isCompletedBoolean;
 
         public TaskViewHolder(@NonNull View itemView) {
@@ -49,6 +49,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             nameTextview= itemView.findViewById(R.id.tvnametask);
             desTextview= itemView.findViewById(R.id.tvdescription);
             isCompletedBoolean= itemView.findViewById(R.id.btncompleted).isOpaque();
+            dateTextview= itemView.findViewById(R.id.etdate2);
         }
     }
 
