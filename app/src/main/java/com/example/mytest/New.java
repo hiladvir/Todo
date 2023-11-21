@@ -48,6 +48,10 @@ public class New extends AppCompatActivity implements MyDialogListener {
         Intent myIntent = new Intent(New.this, Enter.class);
         startActivity(myIntent);
     }
+    public void comButton(View view) {
+        Intent myIntent = new Intent(getApplicationContext(), Completed.class);
+        startActivity(myIntent);
+    }
     @Override
    public void onDialogNegativeClick() {
 

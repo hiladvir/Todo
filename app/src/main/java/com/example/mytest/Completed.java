@@ -12,10 +12,13 @@ public class Completed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed);
+        Intent intent= getIntent();
+        if (intent!= null){
+            String taskTitle= intent.getStringExtra("taskTitle");
+            String taskDescription= intent.getStringExtra("taskDescription");
+
+        }
     }
 
-    public void comButton(View view) {
-        Intent myIntent = new Intent(getApplicationContext(), Completed.class);
-        startActivity(myIntent);
-    }
+
 }
