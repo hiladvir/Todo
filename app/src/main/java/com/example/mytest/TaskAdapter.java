@@ -12,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
+    List<String> items;
 
     public ArrayList<Task> tasks;
     public TaskAdapter(ArrayList<Task>tasks){
@@ -24,7 +26,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View taskview= LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleritemlist, parent,false);
-        return new TaskViewHolder(taskview);
+        TaskViewHolder vh = new TaskViewHolder(taskview);
+        vh.linkAdapter(this);
+        return vh;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public  TextView dateTextview;
         public boolean isCompletedBoolean;
         public Button btncompleted;
-
+        private TaskAdapter adapter;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +71,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             isCompletedBoolean= itemView.findViewById(R.id.btncompleted).isOpaque();
             dateTextview= itemView.findViewById(R.id.etdate2);
            btncompleted = itemView.findViewById(R.id.btncompleted);
+           itemView.findViewById(R.id.btndelete).setOnClickListener(view ->{
+               adapter.tasks.remove(getAdapterPosition());
+               adapter.notifyItemRemoved(getAdapterPosition());
+
+           } );
+        }
+        public void linkAdapter(TaskAdapter adapter){
+            this.adapter = adapter;
         }
     }
 

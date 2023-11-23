@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class New extends AppCompatActivity implements MyDialogListener {
+    String [] Data= {"hello"};
+    int counter= 0;
     public TaskAdapter taskAdapter;
 
     @Override
@@ -28,6 +31,18 @@ public class New extends AppCompatActivity implements MyDialogListener {
 
         taskAdapter = new TaskAdapter(tasks);
         recyclerView.setAdapter(taskAdapter);
+        //List<String> tasks= new LinkedList<>();
+        //tasks.add ("Code it");
+        RecyclerView recyclerView1= findViewById(R.id.recyclerviewlist);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+//        findViewById(R.id.btnadd).setOnClickListener(view -> {
+//          //  tasks.add(data[counter%3]);
+//            counter++;
+//            taskAdapter.notifyItemInserted(tasks.size()-1);
+//        });
+
+
+
     }
     public void openDialog(){
         dialog dialog= new dialog();
@@ -57,4 +72,7 @@ public class New extends AppCompatActivity implements MyDialogListener {
 
 
         }
+
+    private class List<T> {
     }
+}
