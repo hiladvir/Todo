@@ -47,11 +47,10 @@
         android:layout_width="68dp"
         android:layout_height="21dp"
         android:text="בוצע?"
-        android:textSize="20dp"
-
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
+        app:layout_constraintHorizontal_bias="0.297"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526" />
@@ -68,8 +67,8 @@
 
     <Button
         android:id="@+id/btndelete"
-        android:layout_width="72dp"
-        android:layout_height="45dp"
+        android:layout_width="75dp"
+        android:layout_height="33dp"
         android:text="Delete"
         android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     List<String> items;
+    private SharedViewModel viewModel;
+    private EditText editText;
 
     public ArrayList<Task> tasks;
     public TaskAdapter(ArrayList<Task>tasks){
@@ -39,14 +43,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.dateTextview.setText(currentTask.getDate());
         holder.btncompleted.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                viewModel.setTasks(editText.getText());
+
+
                 Intent intent= new Intent(view.getContext(), Completed.class);
                 intent.putExtra("taskTitle", tasks.get(position).getTaskName());
-               intent.putExtra("taskDescription",tasks.get(position).getTaskDescription());
+                intent.putExtra("taskDescription",tasks.get(position).getTaskDescription());
                 intent.putExtra("taskDate", tasks.get(position).getDate());
-                view.getContext().startActivity(intent);
-
             }
         });
+
 
     }
 

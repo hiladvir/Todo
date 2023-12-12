@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 
 import java.util.Objects;
 
@@ -24,15 +25,20 @@ public class dialog extends AppCompatDialogFragment {
     private String taskdate;
     private String taskName;
     private Boolean taskisCompleted;
+    private Bundle bundle;
+
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder= new AlertDialog.Builder(requireActivity());
 
+
+
+
         LayoutInflater inflater= getActivity().getLayoutInflater();
         View view= inflater.inflate(R.layout.layoutdialog,null);
-        onSaveClickListener = (MyDialogListener) getActivity();
+        onSaveClickListener = (MyDialogListener) getParentFragment();
         builder.setView(view)
                 .setTitle("Add task")
                 .setNegativeButton("cancel", (dialogInterface, i) -> {
@@ -41,6 +47,8 @@ public class dialog extends AppCompatDialogFragment {
                 .setPositiveButton("save", (dialogInterface, i) -> {
                     EditText editTextDis = view.findViewById(R.id.etdis);
                     EditText editTextDate = view.findViewById(R.id.etdate);
+
+
 
 
 
@@ -58,7 +66,9 @@ public class dialog extends AppCompatDialogFragment {
 
 
                     onSaveClickListener.onDialogPositiveClick(task);
+
                 });
+
 
         EditText editTextdis = view.findViewById(R.id.etdis);
         EditText editTextdate = view.findViewById(R.id.etdate);
@@ -66,4 +76,12 @@ public class dialog extends AppCompatDialogFragment {
         //checkBox.i
         return builder.create();
     }
+    private void sendDataToReceiver(String data){
+        Bundle bundle= new Bundle();
+        bundle.putString("task_name", taskDescription);
+        bundle.putString("task_date", taskdate);
+
+        setArguments(bundle);
+    }
+
 }
