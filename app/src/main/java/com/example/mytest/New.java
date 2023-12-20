@@ -1,6 +1,5 @@
 package com.example.mytest;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class New extends AppCompatActivity  {
-    private SharedViewModel noteViewModel;
+
     String [] Data= {"hello"};
     int counter= 0;
     public TaskAdapter taskAdapter;
@@ -35,7 +34,6 @@ public class New extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
 
-        noteViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
 
 

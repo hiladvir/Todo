@@ -26,6 +26,8 @@ public class Task {
         return isCompleted;
     }
 
+    public void setCompleted(Boolean newState) {isCompleted = newState;}
+
     public String getDate() {return taskDate;}
 
     private class string {

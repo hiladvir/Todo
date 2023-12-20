@@ -2,28 +2,34 @@ package com.example.mytest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.spec.PSource;
+
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     List<String> items;
-    private SharedViewModel viewModel;
-    private EditText editText;
+
 
     public ArrayList<Task> tasks;
-    public TaskAdapter(ArrayList<Task>tasks){
-        this.tasks= tasks;
+    private FragmentManager fm;
+    public TaskAdapter(ArrayList<Task>tasks, FragmentManager fm){
+        this.tasks = tasks;
+        this.fm = fm;
     }
 
     @NonNull
@@ -41,19 +47,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.nameTextview.setText(currentTask.getTaskName());
         holder.desTextview.setText(currentTask.getTaskDescription());
         holder.dateTextview.setText(currentTask.getDate());
+        ((CheckBox) holder.btncompleted).setChecked(currentTask.isCompleted());
+
         holder.btncompleted.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                viewModel.setTasks(editText.getText());
+               // tasks.get(position).setCompleted(true);
+               // EditText editText1= view.findViewById(R.id.etdis);
+                Bundle result= new Bundle();
+                result.putString("date", holder.dateTextview.getText().toString());
+                result.putString("description", holder.desTextview.getText().toString());
+                fm.setFragmentResult("datafromall", result);
 
 
-                Intent intent= new Intent(view.getContext(), Completed.class);
-                intent.putExtra("taskTitle", tasks.get(position).getTaskName());
-                intent.putExtra("taskDescription",tasks.get(position).getTaskDescription());
-                intent.putExtra("taskDate", tasks.get(position).getDate());
-            }
+
+        };
+
         });
-
-
     }
 
     @Override
@@ -70,11 +79,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public Button btncompleted;
         private TaskAdapter adapter;
 
+
+
+
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextview= itemView.findViewById(R.id.tvnametask);
             desTextview= itemView.findViewById(R.id.tvdescription);
-            isCompletedBoolean= itemView.findViewById(R.id.btncompleted).isOpaque();
+            isCompletedBoolean= ((CheckBox) itemView.findViewById(R.id.btncompleted)).isChecked();
             dateTextview= itemView.findViewById(R.id.etdate2);
            btncompleted = itemView.findViewById(R.id.btncompleted);
            itemView.findViewById(R.id.btndelete).setOnClickListener(view ->{

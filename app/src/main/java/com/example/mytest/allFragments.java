@@ -1,7 +1,6 @@
 package com.example.mytest;
 
-import android.app.Dialog;
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class allFragments extends Fragment implements MyDialogListener {
     private String mParam1;
     private String mParam2;
     TaskAdapter taskAdapter;
-    private SharedViewModel viewModel;
+
 
     public allFragments() {
         // Required empty public constructor
@@ -90,12 +90,14 @@ public class allFragments extends Fragment implements MyDialogListener {
         Button button = (Button) view.findViewById(R.id.btnadd);
         button.setOnClickListener(buttonView ->
                 openDialog());
-        taskAdapter = new TaskAdapter(tasks);
+        taskAdapter = new TaskAdapter(tasks, getParentFragmentManager());
         recyclerView.setAdapter(taskAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
+
+
 
     @Override
     public void onDialogPositiveClick(Task data) {
