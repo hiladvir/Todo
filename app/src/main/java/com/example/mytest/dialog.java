@@ -2,6 +2,11 @@ package com.example.mytest;
 
 import android.app.ActivityManager;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -26,6 +31,7 @@ public class dialog extends AppCompatDialogFragment {
     private String taskName;
     private Boolean taskisCompleted;
     private Bundle bundle;
+    private Notification note;
 
 
     @NonNull
@@ -40,31 +46,17 @@ public class dialog extends AppCompatDialogFragment {
         View view= inflater.inflate(R.layout.layoutdialog,null);
         onSaveClickListener = (MyDialogListener) getParentFragment();
         builder.setView(view)
-                .setTitle("Add task")
-                .setNegativeButton("cancel", (dialogInterface, i) -> {
+                .setTitle("הוספת משימה")
+                .setNegativeButton("ביטול", (dialogInterface, i) -> {
                     onSaveClickListener.onDialogNegativeClick();
                 })
-                .setPositiveButton("save", (dialogInterface, i) -> {
+                .setPositiveButton("שמירה", (dialogInterface, i) -> {
                     EditText editTextDis = view.findViewById(R.id.etdis);
                     EditText editTextDate = view.findViewById(R.id.etdate);
-
-
-
-
-
-                 taskDescription =editTextDis.getText().toString();
-                 taskdate= editTextDate.getText().toString();
-
-
-
-
+                    taskDescription =editTextDis.getText().toString();
+                    taskdate= editTextDate.getText().toString();
                     Task task = new Task("", taskDescription, taskdate, false);
-
-
                     // get data
-
-
-
                     onSaveClickListener.onDialogPositiveClick(task);
 
                 });
@@ -80,6 +72,8 @@ public class dialog extends AppCompatDialogFragment {
         Bundle bundle= new Bundle();
         bundle.putString("task_name", taskDescription);
         bundle.putString("task_date", taskdate);
+        //bundle.putString("task_date", taskdate);
+
 
         setArguments(bundle);
     }

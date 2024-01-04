@@ -35,9 +35,6 @@ public class New extends AppCompatActivity  {
         setContentView(R.layout.activity_new);
 
 
-
-
-
         viewPager2 = findViewById(R.id.viewPager);
         tabLayout= findViewById(R.id.tabLayout);
         //getSupportActionBar().hide();

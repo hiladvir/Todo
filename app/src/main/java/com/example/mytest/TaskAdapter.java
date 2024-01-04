@@ -26,7 +26,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
     public ArrayList<Task> tasks;
-    private FragmentManager fm;
+    private final FragmentManager fm;
     public TaskAdapter(ArrayList<Task>tasks, FragmentManager fm){
         this.tasks = tasks;
         this.fm = fm;
@@ -51,16 +51,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.btncompleted.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-               // tasks.get(position).setCompleted(true);
-               // EditText editText1= view.findViewById(R.id.etdis);
                 Bundle result= new Bundle();
                 result.putString("date", holder.dateTextview.getText().toString());
                 result.putString("description", holder.desTextview.getText().toString());
                 fm.setFragmentResult("datafromall", result);
+                fm.setFragmentResult("delete_task",result);
 
 
 
-        };
+
+
+
+
+
+        }
 
         });
     }
@@ -68,6 +72,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public int getItemCount() {
         return tasks.size();
+    }
+
+    public Task getTask(String date, String desc) {
+        for(Task task : tasks){
+            if(task.getTaskDescription().equals(desc) &&
+                task.getDate().equals(date))
+                return task;
+        }
+        return null;
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {

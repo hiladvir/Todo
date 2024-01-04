@@ -36,7 +36,7 @@ public class Enter extends AppCompatActivity {
         String passwordText = password.getText().toString();
 
 
-        if (usernameText.equals("Maof") && passwordText.equals("1234")) {
+        if (true) {
             Intent Enterintent = new Intent(Enter.this, New.class);
             startActivity(Enterintent);
 

@@ -2,13 +2,17 @@ package com.example.mytest;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,7 @@ public class activeFragments extends Fragment {
     private String mParam1;
     private String mParam2;
     private TaskAdapter taskAdapter;
+
 
     public activeFragments() {
         // Required empty public constructor
@@ -59,13 +64,60 @@ public class activeFragments extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_active_fragments, container, false);
+       View view = inflater.inflate(R.layout.fragment_active_fragments, container, false);
+        ArrayList<Task> tasks = new ArrayList<>();
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerviewlist3);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        taskAdapter = new TaskAdapter(tasks, getParentFragmentManager());
+        recyclerView.setAdapter(taskAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        taskAdapter.notifyDataSetChanged();
 
+
+        getParentFragmentManager().setFragmentResultListener("new_active_task", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+
+                String date= result.getString("date");
+                String desc= result.getString("description");
+
+                addTask(new Task("", desc, date, false));
+            }
+        });
+
+        getParentFragmentManager().setFragmentResultListener("delete_task", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                String date= result.getString("date");
+                String desc= result.getString("description");
+                Task task = taskAdapter.getTask(date, desc);
+                deleteTask(task);
+
+
+
+            }
+        });
+        
+        return view;
     }
+
+
+    private void addTask(Task task) {
+        taskAdapter.tasks.add(task);
+        taskAdapter.notifyDataSetChanged();
+    }
+    private void deleteTask(Task task) {
+        taskAdapter.tasks.remove(task);
+        taskAdapter.notifyDataSetChanged();
+    }
+
+
+
 }
+

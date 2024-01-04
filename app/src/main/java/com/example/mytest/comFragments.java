@@ -88,6 +88,7 @@ public class comFragments extends Fragment {
                 String desc= result.getString("description");
 
                 addTask(new Task("", desc, date, true));
+
             }
         });
 

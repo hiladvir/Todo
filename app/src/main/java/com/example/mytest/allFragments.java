@@ -64,6 +64,7 @@ public class allFragments extends Fragment implements MyDialogListener {
     public void openDialog() {
         dialog dialog = new dialog();
         dialog.show(getChildFragmentManager(), "dialog");
+
     }
 
     private FragmentManager getSupportFragmentManager() {
@@ -80,7 +81,6 @@ public class allFragments extends Fragment implements MyDialogListener {
        if (args!= null){
             String value= args.getString("key", null);
         }
-
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_fragments, container, false);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -92,7 +92,6 @@ public class allFragments extends Fragment implements MyDialogListener {
                 openDialog());
         taskAdapter = new TaskAdapter(tasks, getParentFragmentManager());
         recyclerView.setAdapter(taskAdapter);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
@@ -103,6 +102,11 @@ public class allFragments extends Fragment implements MyDialogListener {
     public void onDialogPositiveClick(Task data) {
         taskAdapter.tasks.add(data);
         taskAdapter.notifyDataSetChanged();
+
+        Bundle result= new Bundle();
+        result.putString("date", data.getDate());
+        result.putString("description", data.getTaskDescription());
+        getParentFragmentManager().setFragmentResult("new_active_task", result);
     }
 
     @Override

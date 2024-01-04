@@ -6,26 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic"
     tools:context=".New">
-
-    <TextView
-        android:id="@+id/tvtodo"
-        android:layout_width="107dp"
-        android:layout_height="38dp"
-        android:text="ToDos"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabTextColor="@color/black"
         android:background="@color/white"/>
 
 
@@ -46,6 +33,9 @@
         android:layout_height="wrap_content"
         android:onClick="btnback2"
         android:text="Back"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.Material3.Dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"

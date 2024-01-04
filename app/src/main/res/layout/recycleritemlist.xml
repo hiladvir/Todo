@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/tvnametask"
@@ -69,7 +71,10 @@
         android:id="@+id/btndelete"
         android:layout_width="75dp"
         android:layout_height="33dp"
-        android:text="Delete"
+        android:text="מחיקה"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.Material3.Dark"
         android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvdescription"
