@@ -1,14 +1,12 @@
 package com.example.mytest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Enter extends AppCompatActivity {
 
@@ -16,34 +14,22 @@ public class Enter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
-        EditText username= findViewById(R.id.etname);
-        String usernameText = username.getText().toString();
-        Log.d("username:",username.getText().toString());
+     }
 
-        EditText password= findViewById(R.id.etpass);
-        String passwordText = password.getText().toString();
-        Log.d("password:",password.getText().toString());
-
-
-
-
-        }
-
-    public void gologin(View view) {
+    public void goLogin(View view) {
         EditText username= findViewById(R.id.etname);
         String usernameText = username.getText().toString();
         EditText password= findViewById(R.id.etpass);
         String passwordText = password.getText().toString();
 
-
-        if (true) {
-            Intent Enterintent = new Intent(Enter.this, New.class);
-            startActivity(Enterintent);
-
-        }
-
-        else {
+        if (usernameText.equals("a") && passwordText.equals("a"))
+            startToDoActivity();
+        else
             Toast.makeText(getApplicationContext(),"שם משתמש והסיסמה שגויים", Toast.LENGTH_SHORT).show();
-        }
+    }
+
+    private void startToDoActivity(){
+        Intent enterIntent = new Intent(Enter.this, New.class);
+        startActivity(enterIntent);
     }
 }

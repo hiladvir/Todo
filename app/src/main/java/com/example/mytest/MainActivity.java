@@ -13,9 +13,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
     public void loginButton(View view) {
-        Intent myIntent = new Intent(MainActivity.this, Enter.class);
-        startActivity(myIntent);
+        Intent intent = new Intent(MainActivity.this, Enter.class);
+        startActivity(intent);
     }
 }
