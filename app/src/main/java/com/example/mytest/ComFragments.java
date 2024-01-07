@@ -11,17 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link comFragments#newInstance} factory method to
+ * Use the {@link ComFragments#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class comFragments extends Fragment {
+public class ComFragments extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +32,7 @@ public class comFragments extends Fragment {
     private String mParam2;
     TaskAdapter taskAdapter;
 
-    public comFragments() {
+    public ComFragments() {
         // Required empty public constructor
     }
 
@@ -45,8 +44,8 @@ public class comFragments extends Fragment {
      * @return A new instance of fragment comFragments.
      */
     // TODO: Rename and change types and number of parameters
-    public static comFragments newInstance(List<Task> tasks) {
-        comFragments fragment = new comFragments();
+    public static ComFragments newInstance(List<Task> tasks) {
+        ComFragments fragment = new ComFragments();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);

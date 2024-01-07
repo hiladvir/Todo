@@ -6,7 +6,6 @@ public class Task {
     private String taskDate;
     private boolean isCompleted;
 
-
     public Task(String taskName, String taskDescription,String taskDate, Boolean isCompleted) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;

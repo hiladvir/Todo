@@ -29,7 +29,7 @@ public class Enter extends AppCompatActivity {
     }
 
     private void startToDoActivity(){
-        Intent enterIntent = new Intent(Enter.this, New.class);
+        Intent enterIntent = new Intent(Enter.this, ToDoActivity.class);
         startActivity(enterIntent);
     }
 }

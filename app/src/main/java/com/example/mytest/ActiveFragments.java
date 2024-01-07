@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class activeFragments extends Fragment {
+public class ActiveFragments extends Fragment {
     private TaskAdapter taskAdapter;
 
     @Override

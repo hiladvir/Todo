@@ -3,8 +3,6 @@ package com.example.mytest;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class fragmentsAdapter extends FragmentStateAdapter {
@@ -18,17 +16,16 @@ public class fragmentsAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new allFragments();
+                return new AllFragments();
             case 1:
-                return new activeFragments();
+                return new ActiveFragments();
             default:
-                return new comFragments();
+                return new ComFragments();
         }
     }
 
     @Override
     public int getItemCount() {
-
         return 3;
     }
 }

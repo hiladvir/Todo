@@ -1,29 +1,18 @@
 package com.example.mytest;
 
-import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
-
-public class dialog extends AppCompatDialogFragment {
+public class AddTaskDialog extends AppCompatDialogFragment {
 
     private MyDialogListener onSaveClickListener;
     private String taskDescription;
