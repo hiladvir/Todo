@@ -14,36 +14,14 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ComFragments#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ComFragments extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     TaskAdapter taskAdapter;
 
     public ComFragments() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-
-     * @return A new instance of fragment comFragments.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ComFragments newInstance(List<Task> tasks) {
         ComFragments fragment = new ComFragments();
         Bundle args = new Bundle();
@@ -56,12 +34,6 @@ public class ComFragments extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
-
-
-
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -78,21 +50,15 @@ public class ComFragments extends Fragment {
         taskAdapter = new TaskAdapter(task, getParentFragmentManager());
         recyclerView.setAdapter(taskAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         getParentFragmentManager().setFragmentResultListener("datafromall", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
                 String date= result.getString("date");
                 String desc= result.getString("description");
-
                 addTask(new Task("", desc, date, true));
-
             }
         });
-
-
-
         return view;
     }
 

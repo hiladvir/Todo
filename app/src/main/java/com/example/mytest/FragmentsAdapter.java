@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class fragmentsAdapter extends FragmentStateAdapter {
+public class FragmentsAdapter extends FragmentStateAdapter {
 
-    public fragmentsAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public FragmentsAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
@@ -23,7 +23,6 @@ public class fragmentsAdapter extends FragmentStateAdapter {
                 return new ComFragments();
         }
     }
-
     @Override
     public int getItemCount() {
         return 3;

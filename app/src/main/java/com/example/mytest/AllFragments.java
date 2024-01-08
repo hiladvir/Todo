@@ -17,11 +17,9 @@ public class AllFragments extends Fragment implements MyDialogListener {
     public AllFragments() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
     public void openDialog() {
         AddTaskDialog addTaskDialog = new AddTaskDialog();

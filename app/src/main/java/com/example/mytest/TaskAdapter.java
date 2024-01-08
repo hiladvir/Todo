@@ -1,44 +1,32 @@
 package com.example.mytest;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.crypto.spec.PSource;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
-    List<String> items;
-
-
     public ArrayList<Task> tasks;
-    private final FragmentManager fm;
-    public TaskAdapter(ArrayList<Task>tasks, FragmentManager fm){
+    private final FragmentManager fragmentManager;
+    public TaskAdapter(ArrayList<Task>tasks, FragmentManager fragmentManager){
         this.tasks = tasks;
-        this.fm = fm;
+        this.fragmentManager = fragmentManager;
     }
-
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View taskview= LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleritemlist, parent,false);
-        TaskViewHolder vh = new TaskViewHolder(taskview);
-        vh.linkAdapter(this);
-        return vh;
+        TaskViewHolder viewHolder = new TaskViewHolder(taskview);
+        viewHolder.linkAdapter(this);
+        return viewHolder;
     }
 
     @Override
@@ -48,24 +36,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.desTextview.setText(currentTask.getTaskDescription());
         holder.dateTextview.setText(currentTask.getDate());
         ((CheckBox) holder.btncompleted).setChecked(currentTask.isCompleted());
-
         holder.btncompleted.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Bundle result= new Bundle();
                 result.putString("date", holder.dateTextview.getText().toString());
                 result.putString("description", holder.desTextview.getText().toString());
-                fm.setFragmentResult("datafromall", result);
-                fm.setFragmentResult("delete_task",result);
-
-
-
-
-
-
-
-
+                fragmentManager.setFragmentResult("datafromall", result);
+                fragmentManager.setFragmentResult("delete_task",result);
         }
-
         });
     }
 
@@ -73,7 +51,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public int getItemCount() {
         return tasks.size();
     }
-
     public Task getTask(String date, String desc) {
         for(Task task : tasks){
             if(task.getTaskDescription().equals(desc) &&
