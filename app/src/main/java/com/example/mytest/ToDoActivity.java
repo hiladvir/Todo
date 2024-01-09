@@ -12,8 +12,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ToDoActivity extends AppCompatActivity  {
-    String [] Data= {"hello"};
-    int counter= 0;
     ViewPager2 tabPager;
     TabLayout tabLayout;
 
@@ -26,8 +24,7 @@ public class ToDoActivity extends AppCompatActivity  {
         tabLayout= findViewById(R.id.tabLayout);
         //getSupportActionBar().hide();
         tabPager.setAdapter(new FragmentsAdapter(this));
-        TabLayoutMediator tabLayoutMediator= new TabLayoutMediator(tabLayout, tabPager,
-                new TabLayoutMediator.TabConfigurationStrategy() {
+        TabLayoutMediator tabLayoutMediator= new TabLayoutMediator(tabLayout, tabPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position){
@@ -47,7 +44,7 @@ public class ToDoActivity extends AppCompatActivity  {
             }
         }); tabLayoutMediator.attach();
     }
-    public void btnback2(View view) {
+    public void logoutBtn(View view) {
         Intent myIntent = new Intent(ToDoActivity.this, LogIn.class);
         startActivity(myIntent);
     }

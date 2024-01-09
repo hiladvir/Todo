@@ -31,7 +31,7 @@
         android:id="@+id/btnback2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="btnback2"
+        android:onClick="logoutBtn"
         android:text="Back"
         android:backgroundTint="@color/black"
         android:textColor="@color/white"

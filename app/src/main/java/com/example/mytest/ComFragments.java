@@ -36,7 +36,6 @@ public class ComFragments extends Fragment {
         if (getArguments() != null) {
         }
     }
-
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

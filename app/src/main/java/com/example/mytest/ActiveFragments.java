@@ -35,7 +35,7 @@ public class ActiveFragments extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_active_fragments, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerviewlist3);
+        RecyclerView recyclerView = view.findViewById(R.id.activeList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         ArrayList<Task> tasks = new ArrayList<>();

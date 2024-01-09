@@ -32,19 +32,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Task currentTask= tasks.get(position);
-        holder.nameTextview.setText(currentTask.getTaskName());
-        holder.desTextview.setText(currentTask.getTaskDescription());
-        holder.dateTextview.setText(currentTask.getDate());
-        ((CheckBox) holder.btncompleted).setChecked(currentTask.isCompleted());
-        holder.btncompleted.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Bundle result= new Bundle();
-                result.putString("date", holder.dateTextview.getText().toString());
-                result.putString("description", holder.desTextview.getText().toString());
-                fragmentManager.setFragmentResult("datafromall", result);
-                fragmentManager.setFragmentResult("delete_task",result);
-        }
-        });
+        holder.nameView.setText(currentTask.getTaskName());
+        holder.descView.setText(currentTask.getTaskDescription());
+        holder.dateView.setText(currentTask.getDate());
+        ((CheckBox) holder.completedBtn).setChecked(currentTask.isCompleted());
+        holder.completedBtn.setOnClickListener(view -> {
+            Bundle result= new Bundle();
+            result.putString("date", holder.dateView.getText().toString());
+            result.putString("description", holder.descView.getText().toString());
+            fragmentManager.setFragmentResult("datafromall", result);
+            fragmentManager.setFragmentResult("delete_task",result);
+    });
     }
 
     @Override
@@ -62,11 +60,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nameTextview;
-        public TextView desTextview;
-        public  TextView dateTextview;
-        public boolean isCompletedBoolean;
-        public Button btncompleted;
+        public TextView nameView;
+        public TextView descView;
+        public  TextView dateView;
+        public boolean isCompleted;
+        public Button completedBtn;
         private TaskAdapter adapter;
 
 
@@ -74,11 +72,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextview= itemView.findViewById(R.id.tvnametask);
-            desTextview= itemView.findViewById(R.id.tvdescription);
-            isCompletedBoolean= ((CheckBox) itemView.findViewById(R.id.btncompleted)).isChecked();
-            dateTextview= itemView.findViewById(R.id.etdate2);
-           btncompleted = itemView.findViewById(R.id.btncompleted);
+            nameView = itemView.findViewById(R.id.tvnametask);
+            descView = itemView.findViewById(R.id.tvdescription);
+            isCompleted= ((CheckBox) itemView.findViewById(R.id.btncompleted)).isChecked();
+            dateView = itemView.findViewById(R.id.etdate2);
+           completedBtn = itemView.findViewById(R.id.btncompleted);
            itemView.findViewById(R.id.btndelete).setOnClickListener(view ->{
                adapter.tasks.remove(getAdapterPosition());
                adapter.notifyItemRemoved(getAdapterPosition());

@@ -25,19 +25,17 @@ public class AllFragments extends Fragment implements MyDialogListener {
         AddTaskDialog addTaskDialog = new AddTaskDialog();
         addTaskDialog.show(getChildFragmentManager(), "dialog");
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_fragments, container, false);
-
         // setting up add button
-        Button button = (Button) view.findViewById(R.id.btnadd);
-        button.setOnClickListener(buttonView -> openDialog());
+        Button addBtn = view.findViewById(R.id.addBtn);
+        addBtn.setOnClickListener(buttonView -> openDialog());
 
         // configuring recycler view
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerviewlist);
+        RecyclerView recyclerView = view.findViewById(R.id.allList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -53,7 +51,6 @@ public class AllFragments extends Fragment implements MyDialogListener {
     public void onDialogPositiveClick(Task data) {
         taskAdapter.tasks.add(data);
         taskAdapter.notifyDataSetChanged();
-
         Bundle result = new Bundle();
         result.putString("date", data.getDate());
         result.putString("description", data.getTaskDescription());
@@ -64,12 +61,4 @@ public class AllFragments extends Fragment implements MyDialogListener {
     public void onDialogNegativeClick() {
 
     }
-    private void receiveData(){
-        if(getArguments()!= null&& getArguments().containsKey("key")){
-            String data= getArguments().getString("key");
-        }
-    }
-
-
-
 }

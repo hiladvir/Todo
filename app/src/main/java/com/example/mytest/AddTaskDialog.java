@@ -28,8 +28,8 @@ public class AddTaskDialog extends AppCompatDialogFragment {
                     onSaveClickListener.onDialogNegativeClick();
                 })
                 .setPositiveButton("שמירה", (dialogInterface, i) -> {
-                    EditText editTextDis = view.findViewById(R.id.etdis);
-                    EditText editTextDate = view.findViewById(R.id.etdate);
+                    EditText editTextDis = view.findViewById(R.id.etDesc);
+                    EditText editTextDate = view.findViewById(R.id.etDate);
                     taskDescription =editTextDis.getText().toString();
                     taskdate= editTextDate.getText().toString();
                     Task task = new Task("", taskDescription, taskdate, false);

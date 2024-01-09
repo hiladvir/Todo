@@ -25,7 +25,7 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"שם משתמש והסיסמה שגויים", Toast.LENGTH_SHORT).show();
     }
     private void startToDoActivity(){
-        Intent enterIntent = new Intent(LogIn.this, ToDoActivity.class);
-        startActivity(enterIntent);
+        Intent loginIntent = new Intent(LogIn.this, ToDoActivity.class);
+        startActivity(loginIntent);
     }
 }

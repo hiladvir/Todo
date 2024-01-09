@@ -12,14 +12,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewlist"
+        android:id="@+id/allList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="88dp"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnadd"
+        android:id="@+id/addBtn"
         android:layout_width="69dp"
         android:layout_height="74dp"
         android:layout_marginTop="533dp"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerviewlist"
+        app:layout_constraintTop_toTopOf="@+id/allList"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

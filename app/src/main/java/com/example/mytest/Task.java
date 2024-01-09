@@ -29,8 +29,7 @@ public class Task {
 
     public String getDate() {return taskDate;}
 
-    private class string {
-    }
+
 }
 
 
