@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic"
-    tools:context=".Enter">
+    android:background="@drawable/list12"
+    tools:context=".LogIn">
 
 
     <EditText
@@ -13,49 +13,46 @@
         android:layout_width="207dp"
         android:layout_height="59dp"
         android:ems="10"
+        android:hint="@string/username"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.284" />
+        app:layout_constraintVertical_bias="0.373"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etpass"
         android:layout_width="209dp"
         android:layout_height="48dp"
         android:ems="10"
+        android:hint="@string/password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.417" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="התחברות"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintVertical_bias="0.499"
+        android:inputType="textPassword"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btncheck"
         android:layout_width="108dp"
         android:layout_height="61dp"
-        android:text="התחברות"
-        android:onClick="gologin"
+        android:backgroundTint="@color/black"
+        android:onClick="goLogin"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.Material3.Dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.661" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

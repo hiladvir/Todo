@@ -13,13 +13,13 @@
         android:theme="@style/Theme.MyTest"
         tools:targetApi="31">
         <activity
-            android:name=".dialog"
+            android:name=".AddTaskDialog"
             android:exported="false" />
         <activity
-            android:name=".New"
+            android:name=".ToDoActivity"
             android:exported="false" />
         <activity
-            android:name=".Enter"
+            android:name=".LogIn"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
