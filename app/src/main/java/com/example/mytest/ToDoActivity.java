@@ -14,12 +14,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class ToDoActivity extends AppCompatActivity  {
     ViewPager2 tabPager;
     TabLayout tabLayout;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new);
+        setContentView(R.layout.activity_todo);
         tabPager = findViewById(R.id.viewPager);
         tabLayout= findViewById(R.id.tabLayout);
         //getSupportActionBar().hide();

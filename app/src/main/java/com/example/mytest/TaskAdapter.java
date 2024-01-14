@@ -72,7 +72,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameView = itemView.findViewById(R.id.tvnametask);
             descView = itemView.findViewById(R.id.tvdescription);
             isCompleted= ((CheckBox) itemView.findViewById(R.id.btncompleted)).isChecked();
             dateView = itemView.findViewById(R.id.etdate2);
