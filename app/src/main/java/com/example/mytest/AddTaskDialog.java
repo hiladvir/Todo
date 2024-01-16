@@ -23,9 +23,8 @@ public class AddTaskDialog extends AppCompatDialogFragment {
     private MyDialogListener onSaveClickListener;
     private String taskDescription;
     TextView tvDate;
-    private Button dateBtn;
-
     TextView tvTime;
+    private Button dateBtn;
     private Button timeBtn;
 
 
@@ -43,10 +42,12 @@ public class AddTaskDialog extends AppCompatDialogFragment {
                 })
                 .setPositiveButton("שמירה", (dialogInterface, i) -> {
                     EditText editTextDis = view.findViewById(R.id.etDesc);
-                  //  EditText editTextDate = view.findViewById(R.id.etdate2);
-                    taskDescription =editTextDis.getText().toString();
-                  //  tvDate = editTextDate.getText().toString();
-                    Task task = new Task("", taskDescription, "", false);
+                   TextView editTextDate = view.findViewById(R.id.tvDate);
+                   TextView editTextTime = view.findViewById(R.id.tvTime);
+                   taskDescription =editTextDis.getText().toString();
+                   String tvDate = editTextDate.getText().toString();
+                   String tvTime = editTextTime.getText().toString();
+                    Task task = new Task("", taskDescription, tvDate, tvTime, false);
                     // get data
                     onSaveClickListener.onDialogPositiveClick(task);
                 });
@@ -54,7 +55,7 @@ public class AddTaskDialog extends AppCompatDialogFragment {
         dateBtn = view.findViewById(R.id.dateBtn);
         tvDate = view.findViewById(R.id.tvDate);
         timeBtn = view.findViewById(R.id.timeBtn);
-        tvTime = view.findViewById(R.id.tvTime);
+       tvTime = view.findViewById(R.id.tvTime);
         dateBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -90,7 +91,7 @@ public class AddTaskDialog extends AppCompatDialogFragment {
 
             @Override
             public void onTimeSet(TimePicker timePicker, int Hour, int Minute) {
-                tvTime.setText(String.valueOf(Hour)+"."+ String.valueOf(Minute));
+                tvTime.setText(String.valueOf(Hour)+":"+ String.valueOf(Minute));
 
             }
         },16, 12,false);

@@ -22,8 +22,8 @@
 
     <Button
         android:id="@+id/timeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="136dp"
+        android:layout_height="53dp"
         android:text="לבחירת שעה"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,6 @@
         android:id="@+id/tvDate"
         android:layout_width="85dp"
         android:layout_height="24dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dateBtn"
         app:layout_constraintHorizontal_bias="0.282"
@@ -58,15 +57,14 @@
 
     <TextView
         android:id="@+id/tvTime"
-        android:layout_width="99dp"
-        android:layout_height="21dp"
-        android:text="TextView"
+        android:layout_width="136dp"
+        android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/timeBtn"
-        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:layout_constraintVertical_bias="0.501" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

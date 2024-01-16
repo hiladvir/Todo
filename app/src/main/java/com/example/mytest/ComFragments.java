@@ -54,8 +54,9 @@ public class ComFragments extends Fragment {
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
 
                 String date= result.getString("date");
+                String time= result.getString("time");
                 String desc= result.getString("description");
-                addTask(new Task("", desc, date, true));
+                addTask(new Task("", desc, date, time, true));
             }
         });
         return view;

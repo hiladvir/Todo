@@ -2,9 +2,11 @@ package com.example.mytest;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,13 +22,15 @@ public class ActiveFragments extends Fragment {
         super.onCreate(savedInstanceState);
         getParentFragmentManager().setFragmentResultListener("new_active_task", this, (requestKey, result) -> {
             String date = result.getString("date");
+            String time = result.getString("time");
             String desc = result.getString("description");
-            addTask(new Task("", desc, date, false));
+            addTask(new Task("", desc, date, time, false));
         });
         getParentFragmentManager().setFragmentResultListener("delete_task", this, (requestKey, result) -> {
             String date = result.getString("date");
+            String time = result.getString("time");
             String desc = result.getString("description");
-            Task task = taskAdapter.getTask(date, desc);
+            Task task = taskAdapter.getTask(date, desc, time);
             deleteTask(task);
         });
     }

@@ -53,6 +53,7 @@ public class AllFragments extends Fragment implements MyDialogListener {
         taskAdapter.notifyDataSetChanged();
         Bundle result = new Bundle();
         result.putString("date", data.getDate());
+        result.putString("time", data.getTaskTime());
         result.putString("description", data.getTaskDescription());
         getParentFragmentManager().setFragmentResult("new_active_task", result);
     }
