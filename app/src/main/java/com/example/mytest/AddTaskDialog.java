@@ -1,7 +1,9 @@
 package com.example.mytest;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddTaskDialog extends AppCompatDialogFragment {
     private MyDialogListener onSaveClickListener;
     private String taskDescription;
@@ -26,6 +31,10 @@ public class AddTaskDialog extends AppCompatDialogFragment {
     TextView tvTime;
     private Button dateBtn;
     private Button timeBtn;
+
+    private Date date;
+    private int hour;
+    private int minutes;
 
 
     @NonNull
@@ -50,6 +59,7 @@ public class AddTaskDialog extends AppCompatDialogFragment {
                     Task task = new Task("", taskDescription, tvDate, tvTime, false);
                     // get data
                     onSaveClickListener.onDialogPositiveClick(task);
+                    start(date,hour,minutes);
                 });
         //checkBox.i
         dateBtn = view.findViewById(R.id.dateBtn);
@@ -71,8 +81,9 @@ public class AddTaskDialog extends AppCompatDialogFragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 tvDate.setText(String.valueOf(year) + "." + String.valueOf(month + 1) + "." + String.valueOf(day));
+                date = new Date(year, month, day);
             }
-        }, 2004, 12, 14);
+        }, 2023, 12, 14);
 
         dialog.show();
 
@@ -92,13 +103,32 @@ public class AddTaskDialog extends AppCompatDialogFragment {
             @Override
             public void onTimeSet(TimePicker timePicker, int Hour, int Minute) {
                 tvTime.setText(String.valueOf(Hour)+":"+ String.valueOf(Minute));
-
+                hour = Hour;
+                minutes = Minute;
             }
         },16, 12,false);
 
         dialog.show();
 
     };
+
+    public void start(Date date, int hour, int minutes) {
+        AlarmManager manager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        Calendar cal_alarm = Calendar.getInstance();
+        Calendar cal_now = Calendar.getInstance();
+        Date d = new Date();
+        //cal_now.setTime(d);
+        //cal_alarm.setTime(date);
+
+        cal_alarm.setTimeInMillis(System.currentTimeMillis());
+        cal_alarm.clear();
+        cal_alarm.set(date.getYear(),date.getMonth(), date.getDay(), hour, minutes);
+
+        Intent myIntent = new Intent(getContext(), AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, myIntent, PendingIntent.FLAG_MUTABLE);
+        manager.set(AlarmManager.RTC_WAKEUP, cal_alarm.getTimeInMillis(), pendingIntent);
+
+    }
 
 }
 
