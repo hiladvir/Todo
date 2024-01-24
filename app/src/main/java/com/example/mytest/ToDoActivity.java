@@ -1,49 +1,73 @@
 package com.example.mytest;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class ToDoActivity extends AppCompatActivity  {
+public class ToDoActivity extends AppCompatActivity {
     ViewPager2 tabPager;
     TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
         tabPager = findViewById(R.id.viewPager);
-        tabLayout= findViewById(R.id.tabLayout);
+        tabLayout = findViewById(R.id.tabLayout);
         //getSupportActionBar().hide();
         tabPager.setAdapter(new FragmentsAdapter(this));
-        TabLayoutMediator tabLayoutMediator= new TabLayoutMediator(tabLayout, tabPager, new TabLayoutMediator.TabConfigurationStrategy() {
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, tabPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position){
-                    case 0:{
+                switch (position) {
+                    case 0: {
                         tab.setText("all");
                         break;
                     }
-                    case 1:{
+                    case 1: {
                         tab.setText("active");
                         break;
                     }
-                    case 2:{
+                    case 2: {
                         tab.setText("completed");
                         break;
                     }
                 }
             }
-        }); tabLayoutMediator.attach();
+        });
+        tabLayoutMediator.attach();
+
+        checkAndRequestPermission();
     }
+
     public void logoutBtn(View view) {
         Intent myIntent = new Intent(ToDoActivity.this, LogIn.class);
         startActivity(myIntent);
     }
-}
+
+    public void checkAndRequestPermission() {
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            final int REQUEST_NOTIFICATION_PERMISSION = 1;
+            ActivityCompat.requestPermissions(this , new String[]{Manifest.permission.POST_NOTIFICATIONS}
+            , REQUEST_NOTIFICATION_PERMISSION);{
+
+
+        }
+
+    }
+    }
+    }

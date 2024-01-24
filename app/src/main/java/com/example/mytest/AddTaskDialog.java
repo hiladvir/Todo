@@ -59,7 +59,8 @@ public class AddTaskDialog extends AppCompatDialogFragment {
                     Task task = new Task("", taskDescription, tvDate, tvTime, false);
                     // get data
                     onSaveClickListener.onDialogPositiveClick(task);
-                    start(date,hour,minutes);
+                    setNotificationAlarm(date,hour,minutes);
+
                 });
         //checkBox.i
         dateBtn = view.findViewById(R.id.dateBtn);
@@ -86,49 +87,38 @@ public class AddTaskDialog extends AppCompatDialogFragment {
         }, 2023, 12, 14);
 
         dialog.show();
-
-
         timeBtn.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 openTimeDialog();
             }
         });
-
     }
     public void openTimeDialog(){
         TimePickerDialog dialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-
             @Override
-            public void onTimeSet(TimePicker timePicker, int Hour, int Minute) {
-                tvTime.setText(String.valueOf(Hour)+":"+ String.valueOf(Minute));
-                hour = Hour;
-                minutes = Minute;
+            public void onTimeSet(TimePicker timePicker, int hourOnTimeSet, int minuteOnTimeSet) {
+                tvTime.setText(String.valueOf(hourOnTimeSet)+":"+ String.valueOf(minuteOnTimeSet));
+                hour = hourOnTimeSet;
+                minutes = minuteOnTimeSet;
             }
         },16, 12,false);
-
         dialog.show();
-
     };
 
-    public void start(Date date, int hour, int minutes) {
+    public void setNotificationAlarm(Date date, int hour, int minutes) {
         AlarmManager manager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         Calendar cal_alarm = Calendar.getInstance();
         Calendar cal_now = Calendar.getInstance();
         Date d = new Date();
-        //cal_now.setTime(d);
-        //cal_alarm.setTime(date);
-
         cal_alarm.setTimeInMillis(System.currentTimeMillis());
         cal_alarm.clear();
         cal_alarm.set(date.getYear(),date.getMonth(), date.getDay(), hour, minutes);
-
         Intent myIntent = new Intent(getContext(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, myIntent, PendingIntent.FLAG_MUTABLE);
-        manager.set(AlarmManager.RTC_WAKEUP, cal_alarm.getTimeInMillis(), pendingIntent);
-
+        manager.set(AlarmManager.RTC_WAKEUP
+                ,/*cal_alarm.getTimeInMillis()*/
+                System.currentTimeMillis(), pendingIntent);
     }
-
 }
 

@@ -1,17 +1,20 @@
 package com.example.mytest;
-
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
-public class AlarmReceiver extends BroadcastReceiver {
+import androidx.core.app.NotificationCompat;
 
+import java.util.Date;
+public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d("tal1", "talllll");
-        Toast.makeText(context, "ALARM", Toast.LENGTH_LONG).show();
-
+       Toast.makeText(context, "תזכורת!!!", Toast.LENGTH_LONG).show();
+       Intent serviceIntent = new Intent(context,MyService.class);
+       context.startService(serviceIntent);
     }
+
 }
