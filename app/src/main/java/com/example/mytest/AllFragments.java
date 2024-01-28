@@ -43,7 +43,6 @@ public class AllFragments extends Fragment implements MyDialogListener {
         ArrayList<Task> tasks = new ArrayList<>();
         taskAdapter = new TaskAdapter(tasks, getParentFragmentManager());
         recyclerView.setAdapter(taskAdapter);
-
         return view;
     }
 

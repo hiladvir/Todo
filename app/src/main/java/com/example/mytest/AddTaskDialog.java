@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ public class AddTaskDialog extends AppCompatDialogFragment {
     private Date date;
     private int hour;
     private int minutes;
+    private int desiredTimeMillis;
 
 
     @NonNull
@@ -60,7 +62,6 @@ public class AddTaskDialog extends AppCompatDialogFragment {
                     // get data
                     onSaveClickListener.onDialogPositiveClick(task);
                     setNotificationAlarm(date,hour,minutes);
-
                 });
         //checkBox.i
         dateBtn = view.findViewById(R.id.dateBtn);
@@ -109,16 +110,20 @@ public class AddTaskDialog extends AppCompatDialogFragment {
     public void setNotificationAlarm(Date date, int hour, int minutes) {
         AlarmManager manager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         Calendar cal_alarm = Calendar.getInstance();
-        Calendar cal_now = Calendar.getInstance();
-        Date d = new Date();
-        cal_alarm.setTimeInMillis(System.currentTimeMillis());
-        cal_alarm.clear();
-        cal_alarm.set(date.getYear(),date.getMonth(), date.getDay(), hour, minutes);
+
+        cal_alarm.set(Calendar.YEAR, date.getYear());
+        cal_alarm.set(Calendar.MONTH, date.getMonth());
+        cal_alarm.set(Calendar.DAY_OF_MONTH, date.getDay());
+        cal_alarm.set(Calendar.HOUR_OF_DAY, hour);
+        cal_alarm.set(Calendar.MINUTE, minutes);
+        cal_alarm.set(Calendar.SECOND, 0);
+
         Intent myIntent = new Intent(getContext(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, myIntent, PendingIntent.FLAG_MUTABLE);
-        manager.set(AlarmManager.RTC_WAKEUP
-                ,/*cal_alarm.getTimeInMillis()*/
-                System.currentTimeMillis(), pendingIntent);
+        manager.set(
+                AlarmManager.RTC_WAKEUP
+                ,cal_alarm.getTimeInMillis()
+                ,pendingIntent);
     }
 }
 

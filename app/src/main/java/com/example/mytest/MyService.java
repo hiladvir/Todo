@@ -31,7 +31,6 @@ public class MyService extends Service {
         super.onCreate();
         showNotification();
     }
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -44,7 +43,7 @@ public class MyService extends Service {
                 .setContentText("התתראה בזמן שמבוקש")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -61,7 +60,6 @@ public class MyService extends Service {
            //     .PERMISSION_GRANTED)
             //ActivityCompat.requestPermissions(this , new String[]{Manifest.permission.POST_NOTIFICATIONS}
                    // , REQUEST_NOTIFICATION_PERMISSION);{
-
         }
 }
 
