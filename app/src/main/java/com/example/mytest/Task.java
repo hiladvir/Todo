@@ -1,15 +1,19 @@
 package com.example.mytest;
 
+import android.widget.TextView;
+
 public class Task {
     private String taskName;
     private String taskDescription;
     private String taskDate;
+    private String taskTime;
     private boolean isCompleted;
 
-    public Task(String taskName, String taskDescription,String taskDate, Boolean isCompleted) {
+    public Task(String taskName, String taskDescription, String taskDate, String taskTime, Boolean isCompleted) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskDate = taskDate;
+        this.taskTime = taskTime;
         this.isCompleted  = isCompleted;
     }
 
@@ -28,6 +32,7 @@ public class Task {
     public void setCompleted(Boolean newState) {isCompleted = newState;}
 
     public String getDate() {return taskDate;}
+    public String getTaskTime() {return taskTime;}
 
 
 }

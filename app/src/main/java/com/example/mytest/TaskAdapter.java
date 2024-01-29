@@ -32,13 +32,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Task currentTask= tasks.get(position);
-        holder.nameView.setText(currentTask.getTaskName());
+        //holder.nameView.setText(currentTask.getTaskName());
         holder.descView.setText(currentTask.getTaskDescription());
         holder.dateView.setText(currentTask.getDate());
+        holder.timeView.setText(currentTask.getTaskTime());
         ((CheckBox) holder.completedBtn).setChecked(currentTask.isCompleted());
         holder.completedBtn.setOnClickListener(view -> {
             Bundle result= new Bundle();
             result.putString("date", holder.dateView.getText().toString());
+            result.putString("time", holder.timeView.getText().toString());
             result.putString("description", holder.descView.getText().toString());
             fragmentManager.setFragmentResult("datafromall", result);
             fragmentManager.setFragmentResult("delete_task",result);
@@ -49,10 +51,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public int getItemCount() {
         return tasks.size();
     }
-    public Task getTask(String date, String desc) {
+    public Task getTask(String date, String desc, String time) {
         for(Task task : tasks){
             if(task.getTaskDescription().equals(desc) &&
-                task.getDate().equals(date))
+                task.getDate().equals(date) && task.getTaskTime().equals(time))
                 return task;
         }
         return null;
@@ -60,24 +62,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nameView;
         public TextView descView;
         public  TextView dateView;
+        public TextView timeView;
         public boolean isCompleted;
         public Button completedBtn;
         private TaskAdapter adapter;
 
-
-
-
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameView = itemView.findViewById(R.id.tvnametask);
             descView = itemView.findViewById(R.id.tvdescription);
             isCompleted= ((CheckBox) itemView.findViewById(R.id.btncompleted)).isChecked();
             dateView = itemView.findViewById(R.id.etdate2);
-           completedBtn = itemView.findViewById(R.id.btncompleted);
-           itemView.findViewById(R.id.btndelete).setOnClickListener(view ->{
+            timeView = itemView.findViewById(R.id.ettime);
+            completedBtn = itemView.findViewById(R.id.btncompleted);
+            itemView.findViewById(R.id.btndelete).setOnClickListener(view ->{
                adapter.tasks.remove(getAdapterPosition());
                adapter.notifyItemRemoved(getAdapterPosition());
 

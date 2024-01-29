@@ -43,7 +43,6 @@ public class AllFragments extends Fragment implements MyDialogListener {
         ArrayList<Task> tasks = new ArrayList<>();
         taskAdapter = new TaskAdapter(tasks, getParentFragmentManager());
         recyclerView.setAdapter(taskAdapter);
-
         return view;
     }
 
@@ -53,6 +52,7 @@ public class AllFragments extends Fragment implements MyDialogListener {
         taskAdapter.notifyDataSetChanged();
         Bundle result = new Bundle();
         result.putString("date", data.getDate());
+        result.putString("time", data.getTaskTime());
         result.putString("description", data.getTaskDescription());
         getParentFragmentManager().setFragmentResult("new_active_task", result);
     }

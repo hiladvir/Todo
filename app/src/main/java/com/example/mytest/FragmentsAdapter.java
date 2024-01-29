@@ -10,7 +10,6 @@ public class FragmentsAdapter extends FragmentStateAdapter {
     public FragmentsAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {
